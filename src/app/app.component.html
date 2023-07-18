@@ -1,0 +1,38 @@
+<h2>Práctico de Angular</h2>
+<h3>Listado de Items</h3>
+
+<div *ngIf="showList">
+  <div class="table-container">
+    <table mat-table [dataSource]="items" class="mat-elevation-z8 custom-table">-->
+
+      <!-- Name Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
+      </ng-container>
+    
+      <!-- Cost Column -->
+      <ng-container matColumnDef="cost">
+        <th mat-header-cell *matHeaderCellDef> Cost </th>
+        <td mat-cell *matCellDef="let item"> {{ item.cost }} </td>
+      </ng-container>
+    
+      <!-- Header row -->
+     <tr mat-header-row *matHeaderRowDef="columnsToDisplay" class="custom-header-row"></tr>
+      <!-- Data rows -->
+     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" class="custom-data-row"></tr>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="!showList" class="table-container">
+  <p class="no-data">No hay lista para mostrar</p>
+</div>
+
+<div class="button-container">
+  <button 
+    (click)="toggleList()" 
+    mat-flat-button color="primary" 
+    [ngStyle]="{ 'background-color': '#299c70' }"
+  >    {{ showList ? 'Ocultar Lista' : 'Mostrar Lista' }} </button>
+</div>
